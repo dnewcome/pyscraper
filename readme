@@ -1,3 +1,23 @@
+# Pyscraper
+
+Simple declarative web scraping tool using pyjath.
+
+
+# Example 
+
+Scraping template
+
+    {
+        "root_url": "http://localhost:8000/root.html",
+        "urls": ["//*[@class='url']", {"url": "@href"}], 
+        "template": {"name": "//*[@class='mtn fs-24 neutralDarkest']"}
+    }
+
+  
+Invocation 
+
+    cat template | bin/python pyscraper.py
+
 todo
 multiple root urls
 parse data in parent pages
