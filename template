@@ -1,2 +1,8 @@
-{"urls": ["http://localhost:8000/test.html"], "template": {"name": "//*[@class='mtn fs-24 neutralDarkest']"}}
+{
+    "url_list": [
+        {"url":"http://localhost:8000/test.html"},
+        {"url":"http://localhost:8000/test.html"}
+    ], 
+    "template": {"name": "//*[@class='mtn fs-24 neutralDarkest']"}
+}
 
