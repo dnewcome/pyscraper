@@ -1,1 +1,1 @@
-cat template2 | bin/python pyscraper.py
+cat template3 | bin/python pyscraper.py

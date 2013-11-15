@@ -1,5 +1,4 @@
 {
-    "root_url": "http://localhost:8000/root.html",
     "urls": ["//*[@class='url']", {"url": "@href"}], 
     "template": {"name": "//*[@class='mtn fs-24 neutralDarkest']"}
 }
