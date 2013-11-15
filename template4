@@ -1,9 +1,10 @@
 {
-    "urls": [{"url": "http://localhost:8000/root.html"}], 
+    "base": "http://n2a.goexposoftware.com/events/orw2014/goExpo/",
+    "urls": [{"url": "exhibitor/listExhibitorProfiles.php"}], 
     "template": {},
     "config": {
-        "urls": ["//*[@class='url']", {"url": "@href"}], 
-        "template": {"name": "//*[@class='mtn fs-24 neutralDarkest']"}
+        "urls": ["//div[@class='ffSearchResultsData']//tr/td[2]//a", {"url": "@href"}], 
+        "template": {"url": "//td/a[@class='geMain']/@href"}
     }
 }
 
