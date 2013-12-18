@@ -19,32 +19,40 @@ base = config['base'] if 'base' in config else ''
 trace("main config: ", config)
 
 def scrape(config, html):
-    if type(config['urls'][0]) is dict:
-        urls = config['urls']
-    else:
-        if not html:
-            raise Exception("no page loaded to search for urls")
+    try:
+        if type(config['urls'][0]) is dict:
+            urls = config['urls']
         else:
-            urls = PyJath().parse(config['urls'], html)
+            if not html:
+                raise Exception("no page loaded to search for urls")
+            else:
+                urls = PyJath().parse(config['urls'], html)
 
-    trace("urls: ", urls)
-    trace("template: ", config['template'])
+        trace("urls: ", urls)
+        trace("template: ", config['template'])
 
-    ret = []
+        ret = []
 
-    for url in urls:
-        trace(url, None)
-        r = requests.get(base + url['url'])
-        print r
-        tree = etree.parse(StringIO(r.text), etree.HTMLParser())
-        result = PyJath().parse(config['template'], tree)
-        trace("result: ", result)
-        ret.append(result)
-        time.sleep(1)
+        for url in urls:
+            try:
+                trace("requesting", base + url['url'])
+                r = requests.get(base + url['url'])
+                print r
+                tree = etree.parse(StringIO(r.text), etree.HTMLParser())
+                result = PyJath().parse(config['template'], tree)
+                trace("result: ", result)
+                ret.append(result)
 
-        if "config" in config:
-            ret.append(scrape(config['config'], tree))
+                if "config" in config:
+                    ret.append(scrape(config['config'], tree))
+            except KeyboardInterrupt:
+                sys.exit()
+            except Exception, e:
+                print e
 
-    return ret
+        return ret
+
+    except:
+        pass
 
 print scrape(config, None)
